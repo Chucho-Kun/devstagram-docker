@@ -97,6 +97,13 @@ Registrate en Devstagram
                 >
             </div>
 
+            {{-- <div class="mt-5">
+                <input type="checkbox" name="remember">
+                <label class="font-bold text-gray-500" for="">
+                    Mantener mi sesión abierta
+                </label>
+            </div> --}}
+
             <input 
                 type="submit"
                 value="Crear Cuenta"

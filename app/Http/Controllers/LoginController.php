@@ -15,12 +15,13 @@ class LoginController extends Controller
 
     public function store( Request $request )
     {
+        
         $request->validate([ 
             'email' => 'required|email',
             'password' => 'required'
         ]);
 
-        if( !Auth::attempt($request->only('email' , 'password'))){
+        if( !Auth::attempt($request->only('email' , 'password') , $request->remember)){
             return back()->with('mensaje' , 'Credenciales Incorrectas');
         }
 

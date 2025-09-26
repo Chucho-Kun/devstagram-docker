@@ -26,7 +26,7 @@
             @auth
             <nav class="gap-4 flex items-center">
                 <a class="font-bold text-gray-600" href="#">
-                    Hola: <span class="font-normal">{{ auth()->user()->username }}</span>
+                    Hola: <span class="font-normal">{{ $user->username }}</span>
                 </a>
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
