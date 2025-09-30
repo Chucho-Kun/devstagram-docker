@@ -116,3 +116,22 @@ volumes:
         driver: local
 
 ```
+````
+sail artisan tinker
+Psy Shell v0.12.12 (PHP 8.4.12 — cli) by Justin Hileman
+> $usuario = User::find(2)
+[!] Aliasing 'User' to 'App\Models\User' for this Tinker session.
+= App\Models\User {#6081
+    id: 2,
+    name: "Teresa Miope",
+    username: "tessy",
+    email: "tes@tes.com.mx",
+    email_verified_at: null,
+    #password: "$2y$12$YijSq0luHKJU1yCZsIdIMuvHzHxX2Giw0RrspIGO3V2hg.sDKMbFy",
+    #remember_token: "IvCUY0dnsSwlbZwQwSiirpEM91SgT2w2UOL8sfAp4lUpZPGNtATkPddRe17Q",
+    created_at: "2025-09-26 00:04:13",
+    updated_at: "2025-09-26 00:04:13",
+  }
+
+> \App\Models\Post::factory()->count(10)->create();
+```
