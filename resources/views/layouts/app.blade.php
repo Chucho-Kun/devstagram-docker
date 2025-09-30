@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    @stack('styles')
     <title>Devstagram - @yield('titulo')</title>
 
     <!-- Fonts -->
@@ -36,7 +36,7 @@
                     Crear
                 </a>
 
-                <a class="font-bold text-gray-600" href="#">
+                <a class="font-bold text-gray-600" href="{{ route('posts.index' , auth()->user()->username) }}">
                     Hola: <span class="font-normal">{{  auth()->user()->username }}</span>
                 </a>
                 <form method="POST" action="{{ route('logout') }}">
