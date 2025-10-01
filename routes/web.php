@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ComentarioController;
 use App\Http\Controllers\ImagenController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
@@ -24,21 +25,6 @@ Route::get('/posts/create' , [PostController::class, 'create'])->name('posts.cre
 Route::post('/posts' , [PostController::class, 'store'])->name('posts.store');
 Route::get('/{user:username}/posts/{post}', [PostController::class, 'show'])->name('posts.show');
 
+Route::post('/{user:username}/posts/{post}' , [ComentarioController::class , 'store'])->name('comentarios.store');
+
 Route::post('/imagenes' , [ImagenController::class, 'store'])->name('imagenes.store');
-
-// Route::get('/', function (Request $request) {
-//     $upload = $request->file('image');
-//     $image = Image::read($upload)->resize(300, 200);
-
-//     Storage::put(
-//         Str::random() . '.' . $upload->getClientOriginalExtension(),
-//         $image->encodeByExtension($upload->getClientOriginalExtension(), quality: 80)
-//     );
-// });
-
-// Route::get('/', function () {
-//     $image = Image::read(Storage::get('example.jpg'))
-//         ->scale(300, 200);
-
-//     return response()->image($image, Format::WEBP, quality: 65);
-// });

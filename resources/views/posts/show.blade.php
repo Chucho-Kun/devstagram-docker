@@ -7,7 +7,7 @@
 
 
 @section('contenido')
-    <div class="container mx-auto flex">
+    <div class="container mx-auto md:flex">
         <div class="md:w-1/2">
             <img src="{{ asset('uploads') . '/' . $post->imagen }}" alt="{{ $post->titulo }}">
             <div class="p-3">
@@ -30,12 +30,38 @@
         <div class="md:w-1/2 p-5">
             <div class="shadow bg-white p-5 mb-5">
                 <p class="text-xl font-bold text-center mb-4">Lista de comentarios</p>
+                <div class="bg-white shadow mb-5 max-h-96 overflow-y-scroll">
+                    @if ($post->comentarios->count())
+                        @foreach ( $post->comentarios as $comentario )
+
+                            <div class="p-5 border-gray-300 border-b text-left">
+                                <a href="{{ route('posts.index' , $comentario->user ) }}">
+                                    <p class="font-bold">{{ $comentario->user->username }}</p>
+                                </a>
+                                <p>{{ $comentario->comentario }}</p>
+                                <p class="text-sm text-gray-500">{{ $comentario->created_at->diffForHumans() }}</p>
+
+                            </div>
+
+                        @endforeach
+                    @else
+                        <p class="p-10 text-center">Se el primero en comentar</p>
+                    @endif
+                </div>
+
+                @if(session('mensaje'))
+                   <div class="bg-green-500 p-2 text-sm rounded-lg mb-6 text-white text-center uppercase font-bold">
+                        {{ session('mensaje') }}
+                    </div> 
+                @endif
             </div>
 
             @auth
                 <form 
-                    action=""
+                    action="{{ route('comentarios.store' , [ 'user' => $user , 'post' => $post ]) }}"
+                    method="POST"
                 >
+                @csrf
                     <div class="mb-3">
                         <label class="my-4 block text-gray-500 font-bold" for="comentario">
                             ¿Que te parece esta publicación?
@@ -45,7 +71,7 @@
                             id="comentario" 
                             cols="30" 
                             rows="2"
-                            placeholder="Agrega un comentario"
+                            placeholder="Agrega un comentario como {{ auth()->user()->username }}"
                             class="border border-gray-300 p-3 w-full rounded-lg @error('name') bg-gray-100 @enderror"
                         ></textarea>
                         @error('comentario')
@@ -59,6 +85,8 @@
                     >
                 </form>
             @endauth
+
+            
         
         </div>
     </div>
