@@ -58,10 +58,10 @@
                     placeholder="Descripción de la publicación"
                     class="border border-gray-300 p-3 w-full rounded-lg @error('name') bg-gray-100 @enderror"
                 >{{ old('descripcion') }}</textarea>
+                @error('descripcion')
+                    <p class="bg-red-500 text-white text-sm p-2 text-center">{{ $message }}</p>
+                @enderror
             </div>
-            @error('descripcion')
-                <p class="bg-red-500 text-white text-sm p-2 text-center">{{ $message }}</p>
-            @enderror
             
             <div class="mb-5">
                 <input 
