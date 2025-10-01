@@ -134,4 +134,9 @@ Psy Shell v0.12.12 (PHP 8.4.12 — cli) by Justin Hileman
   }
 
 > \App\Models\Post::factory()->count(10)->create();
+
+//un post y quien es su autor
+
+$post = \App\Models\Post::find(1);
+$post->user
 ```
