@@ -140,3 +140,12 @@ Psy Shell v0.12.12 (PHP 8.4.12 — cli) by Justin Hileman
 $post = \App\Models\Post::find(1);
 $post->user
 ```
+
+### routes/web.php
+```
+// Rutas Perfil
+Route::get('{user:username}/editar-perfil' , [PerfilController::class, 'index'])
+    ->middleware('auth')
+    ->name('perfil.index');
+Route::post('{user:username}/editar-perfil' , [PerfilController::class, 'store'])->name('perfil.store');
+```
