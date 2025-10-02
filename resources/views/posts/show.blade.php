@@ -89,9 +89,9 @@
 
         
         <div class="md:w-1/2 p-5">
-            <div class="shadow bg-white p-5 mb-5">
+            <div class="shadow bg-white p-5 mb-5 rounded-2xl">
                 <p class="text-xl font-bold text-center mb-4">Lista de comentarios</p>
-                <div class="bg-white shadow mb-5 max-h-96 overflow-y-scroll">
+                <div class="bg-white mb-5 max-h-96 overflow-y-scroll">
                     @if ($post->comentarios->count())
                         @foreach ( $post->comentarios as $comentario )
 
@@ -99,9 +99,10 @@
                             $imgUsr = $comentario->user->imagen;
                         @endphp
 
-                            <div class="p-5 border-gray-300 border-b text-left flex items-start gap-4">
-                                        
-                                <img class="rounded-full w-8 h-8 object-cover" src="{{ $imgUsr ? asset('perfiles') . '/' . $imgUsr : asset('img/usuario.svg') }}" alt="Imagen de perfil">
+                            <div class="p-2 text-left flex items-start gap-5">
+                                <a href="{{ route('posts.index' , $comentario->user ) }}">
+                                    <img class="rounded-full w-8 h-8 object-cover" src="{{ $imgUsr ? asset('perfiles') . '/' . $imgUsr : asset('img/usuario.svg') }}" alt="Imagen de perfil">
+                                </a>       
                                 
                                 <div>
                                     <div class="bg-gray-200 rounded-2xl p-2">

@@ -30,11 +30,28 @@
                         <p class="bg-red-500 text-white text-sm p-2 text-center mt-2">{{ $message }}</p>
                     @enderror
                 </div>
+                <div class="mt-5">
+                    <label class="mb-2 block uppercase text-gray-500 font-bold" for="email">
+                        Email
+                    </label>
+                    <input 
+                        id="email"
+                        name="email"
+                        type="text"
+                        placeholder="Tu Email de Usuario"
+                        class="border border-gray-300 p-3 w-full rounded-lg @error('name') bg-gray-100 @enderror"
+                        value="{{ auth()->user()->email }}"
+                    >
+                    @error('email')
+                        <p class="bg-red-500 text-white text-sm p-2 text-center mt-2">{{ $message }}</p>
+                    @enderror
+                </div>
 
                 <div class="mt-5">
                     <label class="mb-2 block uppercase text-gray-500 font-bold" for="imagen">
                         Imagen Perfil
                     </label>
+                  
                     <input 
                         id="imagen"
                         name="imagen"
@@ -46,6 +63,7 @@
                     @error('imagen')
                         <p class="bg-red-500 text-white text-sm p-2 text-center mt-2">{{ $message }}</p>
                     @enderror
+                    
                 </div>
 
                 <input 

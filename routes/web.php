@@ -39,6 +39,7 @@ Route::post('/{user:username}/posts/{post}' , [ComentarioController::class , 'st
 Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
 
 Route::post('/imagenes' , [ImagenController::class, 'store'])->name('imagenes.store');
+Route::post('/imagen' , [ImagenController::class, 'avatar'])->name('imagen.avatar');
 
 // Likes
 Route::post('/posts/{post}/likes', [LikeController::class , 'store'])->name('posts.likes.store');

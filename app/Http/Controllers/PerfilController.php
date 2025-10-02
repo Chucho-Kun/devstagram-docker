@@ -28,7 +28,8 @@ class PerfilController extends Controller
                 'max:20',
                 'not_in:narco,puta,zorra,sicario',
                 'unique:users,username,' . Auth::user()->id
-                ]
+            ],
+            'email' => 'required|min:6'
         ]);
 
         if($request->imagen){
