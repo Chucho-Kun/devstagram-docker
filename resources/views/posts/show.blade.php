@@ -5,7 +5,6 @@
     {{ $post->titulo }}
 @endsection
 
-
 @section('contenido')
     <div class="container mx-auto md:flex">
         <div class="md:w-1/2">
@@ -96,12 +95,23 @@
                     @if ($post->comentarios->count())
                         @foreach ( $post->comentarios as $comentario )
 
-                            <div class="p-5 border-gray-300 border-b text-left">
-                                <a href="{{ route('posts.index' , $comentario->user ) }}">
-                                    <p class="font-bold">{{ $comentario->user->username }}</p>
-                                </a>
-                                <p>{{ $comentario->comentario }}</p>
-                                <p class="text-sm text-gray-500">{{ $comentario->created_at->diffForHumans() }}</p>
+                        @php
+                            $imgUsr = $comentario->user->imagen;
+                        @endphp
+
+                            <div class="p-5 border-gray-300 border-b text-left flex items-start gap-4">
+                                        
+                                <img class="rounded-full w-8 h-8 object-cover" src="{{ $imgUsr ? asset('perfiles') . '/' . $imgUsr : asset('img/usuario.svg') }}" alt="Imagen de perfil">
+                                
+                                <div>
+                                    <div class="bg-gray-200 rounded-2xl p-2">
+                                        <a href="{{ route('posts.index' , $comentario->user ) }}">
+                                            <p class="font-bold">{{ $comentario->user->username }}</p>
+                                        </a>
+                                        <p>{{ $comentario->comentario }}</p>
+                                    </div>
+                                    <p class="text-sm text-gray-500">{{ $comentario->created_at->diffForHumans() }}</p>
+                                </div>
 
                             </div>
 
