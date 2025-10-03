@@ -8,6 +8,11 @@ Social network inspired by Instagram with user profile creation, likes system, c
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
 ![Tailwind CSS](https://img.shields.io/badge/TailwindCSS-06B6D4?style=for-the-badge&logo=tailwind-css&logoColor=white)
 ![Dropzone](https://img.shields.io/badge/Dropzone.js-3A3A3A?style=for-the-badge&logo=dropbox&logoColor=white)
+<img width="1108" height="861" alt="Captura de Pantalla 2025-10-03 a la(s) 16 09 24" src="https://github.com/user-attachments/assets/d605a8c1-bdec-4953-95b5-39f6eb2ae01a" />
+
+<img width="1051" height="711" alt="Captura de Pantalla 2025-10-03 a la(s) 16 09 50" src="https://github.com/user-attachments/assets/a8b93d56-9d55-4ed8-9799-5721f63cab5a" />
+
+<img width="1185" height="693" alt="Captura de Pantalla 2025-10-03 a la(s) 16 10 33" src="https://github.com/user-attachments/assets/ef9de037-e31b-477a-8c05-1edd42d777ef" />
 
 ## Correct configuration in Docker
 ```
