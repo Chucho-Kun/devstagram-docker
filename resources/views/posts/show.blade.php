@@ -51,7 +51,7 @@
 
                 <p>
                     <span class="font-bold">{{ $post->likes->count() }}</span>
-                     @if ( $post->likes->count() === 1 ) Like @else Likes @endif 
+                    @choice('Like|Likes' , $post->likes->count())
                 </p>
 
             </div>
