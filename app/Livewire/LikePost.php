@@ -9,10 +9,13 @@ class LikePost extends Component
 {
     public $post;
     public $isLiked;
+    public $totalLikes;
 
     public function mount($post)
     {
         $this->isLiked = $post->checkLike( Auth::user() );
+        $this->totalLikes = $post->likes->count();
+
     }
 
     public function like()
@@ -21,12 +24,13 @@ class LikePost extends Component
             
             $this->post->likes()->where('post_id' , $this->post->id )->delete();
             $this->isLiked = false;
+            $this->totalLikes--;
             
         }else{
 
             $this->post->likes()->create([ 'user_id' => Auth::user()->id ]);
             $this->isLiked = true;
-
+            $this->totalLikes++;
         }
     }
 
