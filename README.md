@@ -14,7 +14,8 @@ Social network inspired by Instagram with user profile creation, likes system, c
 
 <img width="1185" height="693" alt="Captura de Pantalla 2025-10-03 a la(s) 16 10 33" src="https://github.com/user-attachments/assets/ef9de037-e31b-477a-8c05-1edd42d777ef" />
 
-## Correct configuration in Docker
+## Configuration in Docker
+### docker-compose.yml
 ```
 services:
     laravel.test:
@@ -122,7 +123,9 @@ volumes:
         driver: local
 
 ```
-````
+## Using tinker to try databases conection
+### terminal
+```
 sail artisan tinker
 Psy Shell v0.12.12 (PHP 8.4.12 — cli) by Justin Hileman
 > $usuario = User::find(2)
@@ -147,11 +150,41 @@ $post = \App\Models\Post::find(1);
 $post->user
 ```
 
-### routes/web.php
+## Deploy in DOM Cloud
+### in website options
 ```
-// Rutas Perfil
-Route::get('{user:username}/editar-perfil' , [PerfilController::class, 'index'])
-    ->middleware('auth')
-    ->name('perfil.index');
-Route::post('{user:username}/editar-perfil' , [PerfilController::class, 'store'])->name('perfil.store');
+source: https://github.com/Chucho-Kun/devstagram-docker
+features:
+  - mysql
+  - ssl
+  - ssl always
+nginx:
+  root: public_html/public
+  fastcgi: on
+  locations:
+    - match: /
+      try_files: $uri $uri/ /index.php$is_args$args
+    - match: ~ \.[^\/]+(?<!\.php)$
+      try_files: $uri =404
+commands:
+  - cp .env.example .env
+  - sed -i 's/^#\s*\(DB_HOST=.*\)/\1/' .env
+  - sed -i 's/^#\s*\(DB_PORT=.*\)/\1/' .env
+  - sed -i 's/^#\s*\(DB_DATABASE=.*\)/\1/' .env
+  - sed -i 's/^#\s*\(DB_USERNAME=.*\)/\1/' .env
+  - sed -i 's/^#\s*\(DB_PASSWORD=.*\)/\1/' .env
+  - sed -i "s/DB_HOST=127.0.0.1/DB_HOST=localhost/g" .env
+  - sed -ri "s/DB_DATABASE=.*/DB_DATABASE=${DATABASE}/g" .env
+  - sed -ri "s/DB_USERNAME=.*/DB_USERNAME=${USERNAME}/g" .env
+  - sed -ri "s/DB_PASSWORD=.*/DB_PASSWORD=${PASSWORD}/g" .env
+  - sed -ri "s/APP_URL=.*/APP_URL=http:\/\/${DOMAIN}/g" .env
+  - sed -ri "s/DB_CONNECTION=.*/DB_CONNECTION=mysql/g" .env
+  - composer install
+  - php artisan migrate:fresh || true
+  - php artisan key:generate
+  - php artisan storage:link
+  - php artisan livewire:publish
+  - cp -r vendor/livewire/livewire/dist public/livewire
+  - npm install
+  - npm run build
 ```
