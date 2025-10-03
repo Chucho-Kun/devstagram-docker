@@ -12,7 +12,7 @@
     <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
     <!-- Styles / Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-
+    @livewireStyles
 </head>
 
 <body class="bg-gray-100">
@@ -66,6 +66,8 @@
     <footer class="mt-10 text-center p-5 text-gray-300 font-bold bg-black uppercase">
         Devstagram - Todos los derechos reservados {{ now()->year }}
     </footer>
+
+    @livewireScripts
 </body>
 
 </html>
